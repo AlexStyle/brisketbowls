@@ -261,11 +261,11 @@ function BootSequence({onDone}){
   if(!started)return(
     <div style={{position:'fixed',inset:0,zIndex:100,background:'#020406',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
       <div style={{position:'absolute',inset:0,background:'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,204,0.012) 2px,rgba(0,255,204,0.012) 3px)',pointerEvents:'none'}}/>
-      <div style={{fontSize:8,fontFamily:'monospace',letterSpacing:6,color:'#00ffcc44',marginBottom:16}}>★ MECHA-PIT OS ★</div>
-      <button onClick={begin} style={{padding:'14px 40px',fontSize:11,fontFamily:'monospace',letterSpacing:4,background:'#00ffcc0a',border:'1px solid #00ffcc44',color:'#00ffcc',cursor:'pointer',transition:'all .3s',position:'relative',overflow:'hidden'}}>
+      <div style={{fontSize:'clamp(11px, 2vw, 14px)',fontFamily:'monospace',letterSpacing:6,color:'#00ffcc44',marginBottom:16}}>★ MECHA-PIT OS ★</div>
+      <button onClick={begin} style={{padding:'14px 40px',fontSize:'clamp(14px, 2.5vw, 18px)',fontFamily:'monospace',letterSpacing:4,background:'#00ffcc0a',border:'1px solid #00ffcc44',color:'#00ffcc',cursor:'pointer',transition:'all .3s',position:'relative',overflow:'hidden'}}>
         <span style={{position:'relative',zIndex:1}}>ENGAGE SYSTEMS</span>
       </button>
-      <div style={{fontSize:7,fontFamily:'monospace',color:'#00ffcc22',marginTop:12,letterSpacing:2}}>AUDIO REQUIRED · CLICK TO INITIALIZE</div>
+      <div style={{fontSize:'clamp(11px, 1.8vw, 13px)',fontFamily:'monospace',color:'#00ffcc22',marginTop:12,letterSpacing:2}}>AUDIO REQUIRED · CLICK TO INITIALIZE</div>
     </div>
   );
 
@@ -274,12 +274,12 @@ function BootSequence({onDone}){
       opacity:phase==='fade'?0:1,transition:'opacity 0.8s ease-out',pointerEvents:phase==='fade'?'none':'all'}}>
       <style>{`@keyframes blinkcur{0%,50%{opacity:1}51%,100%{opacity:0}}`}</style>
       <div style={{position:'absolute',inset:0,background:'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,204,0.012) 2px,rgba(0,255,204,0.012) 3px)',pointerEvents:'none'}}/>
-      <div style={{width:'min(90vw,580px)',maxHeight:'70vh',position:'relative'}}>
+      <div style={{width:'min(92vw,580px)',maxHeight:'70vh',position:'relative'}}>
         <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'7px 12px',background:'#00ffcc08',borderBottom:'1px solid #00ffcc1a'}}>
-          <span style={{fontSize:8,fontFamily:'monospace',color:'#00ffcc',letterSpacing:3}}>MECHA-PIT OS</span>
+          <span style={{fontSize:'clamp(11px, 1.8vw, 13px)',fontFamily:'monospace',color:'#00ffcc',letterSpacing:3}}>MECHA-PIT OS</span>
           <div style={{display:'flex',gap:5}}>{['#ff4444','#ffcc00','#00ffcc'].map((c,i)=><div key={i} style={{width:5,height:5,borderRadius:'50%',background:c,opacity:.4}}/>)}</div>
         </div>
-        <div ref={ref} style={{padding:'10px 12px',fontFamily:'monospace',fontSize:10,lineHeight:1.7,color:'#00ffcc',maxHeight:'55vh',overflowY:'auto',background:'#020406'}}>
+        <div ref={ref} style={{padding:'10px 12px',fontFamily:'monospace',fontSize:'clamp(13px, 2.2vw, 16px)',lineHeight:1.7,color:'#00ffcc',maxHeight:'55vh',overflowY:'auto',background:'#020406'}}>
           {lines.map((l,i)=>(
             <div key={i} style={{color:l.startsWith('[OK')?'#00ffcc':l.startsWith('[SYS')?'#00ffcc77':l.includes('██')?'#ff4400':'#00ffcc55',whiteSpace:'pre',opacity:l.includes('██')?.65:1}}>{l}</div>
           ))}
@@ -287,8 +287,8 @@ function BootSequence({onDone}){
         </div>
         <div style={{padding:'8px 12px',borderTop:'1px solid #00ffcc0d',background:'#020406'}}>
           <div style={{display:'flex',justifyContent:'space-between',marginBottom:3}}>
-            <span style={{fontSize:7,fontFamily:'monospace',color:'#00ffcc55',letterSpacing:2}}>SYSTEM INIT</span>
-            <span style={{fontSize:7,fontFamily:'monospace',color:'#00ffcc',letterSpacing:2}}>{progress}%</span>
+            <span style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#00ffcc55',letterSpacing:2}}>SYSTEM INIT</span>
+            <span style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#00ffcc',letterSpacing:2}}>{progress}%</span>
           </div>
           <div style={{height:2,background:'#0a1510',borderRadius:1,overflow:'hidden'}}>
             <div style={{height:'100%',width:`${progress}%`,background:'linear-gradient(90deg,#00ffcc33,#00ffcc)',transition:'width .3s',borderRadius:1}}/>
@@ -307,28 +307,28 @@ function CockpitHUD({sel,tab,muted,setMuted}){
   const c=cur?ac[cur.era]:'#00ffcc';
   const ep=sel!==null?Math.round(((sel+1)/evts.length)*100):0;
   return(<>
-    <div style={{position:'fixed',top:0,left:0,right:0,zIndex:10,height:26,background:'linear-gradient(180deg,#020406ee,#02040600)',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 10px',borderBottom:'1px solid #00ffcc0d'}}>
+    <div style={{position:'fixed',top:0,left:0,right:0,zIndex:10,height:34,background:'linear-gradient(180deg,#020406ee,#02040600)',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 12px',borderBottom:'1px solid #00ffcc0d'}}>
       <div style={{display:'flex',alignItems:'center',gap:8}}>
-        <div style={{width:4,height:4,borderRadius:'50%',background:'#00ffcc',animation:'blink 2s infinite'}}/>
-        <span style={{fontSize:7,fontFamily:'monospace',color:'#00ffcc77',letterSpacing:2}}>MECHA-PIT</span>
+        <div style={{width:5,height:5,borderRadius:'50%',background:'#00ffcc',animation:'blink 2s infinite'}}/>
+        <span style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#00ffcc77',letterSpacing:2}}>MECHA-PIT</span>
       </div>
       <div style={{display:'flex',alignItems:'center',gap:10}}>
         <button onClick={()=>{setMuted(m=>{if(!m){stopCrackle();}else{startCrackle();}return!m;});playClick();}}
-          style={{background:'none',border:'none',cursor:'pointer',color:muted?'#ff444488':'#00ffcc66',padding:'0 4px',fontFamily:'monospace',fontSize:8}}>{muted?'◉ MUTE':'◈ AUDIO'}</button>
-        <span style={{fontSize:7,fontFamily:'monospace',color:'#00ffcc44'}}>{time}</span>
+          style={{background:'none',border:'none',cursor:'pointer',color:muted?'#ff444488':'#00ffcc66',padding:'0 4px',fontFamily:'monospace',fontSize:'clamp(11px, 1.8vw, 13px)'}}>{muted?'◉ MUTE':'◈ AUDIO'}</button>
+        <span style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#00ffcc44'}}>{time}</span>
       </div>
     </div>
-    <div style={{position:'fixed',left:0,top:30,bottom:30,width:32,zIndex:10,display:'flex',flexDirection:'column',justifyContent:'space-between',alignItems:'center',padding:'6px 0'}}>
+    <div style={{position:'fixed',left:0,top:38,bottom:32,width:36,zIndex:10,display:'flex',flexDirection:'column',justifyContent:'space-between',alignItems:'center',padding:'8px 0'}}>
       {[{l:'SMOKE',v:cur?cur.pwr:50,c},{l:'HEAT',v:cur?Math.min(100,cur.pwr+15):40,c:'#ff4400'},{l:'EPOCH',v:ep,c:'#aa44ff'}].map((b,i)=>(
-        <div key={i} style={{display:'flex',flexDirection:'column',alignItems:'center',gap:1}}>
-          <span style={{fontSize:5,fontFamily:'monospace',color:b.c+'44',letterSpacing:1,writingMode:'vertical-rl',transform:'rotate(180deg)'}}>{b.l}</span>
-          <div style={{width:3,height:50,background:'#0a1510',borderRadius:1,overflow:'hidden',position:'relative'}}>
+        <div key={i} style={{display:'flex',flexDirection:'column',alignItems:'center',gap:2}}>
+          <span style={{fontSize:'clamp(9px, 1.2vw, 11px)',fontFamily:'monospace',color:b.c+'44',letterSpacing:1,writingMode:'vertical-rl',transform:'rotate(180deg)'}}>{b.l}</span>
+          <div style={{width:4,height:52,background:'#0a1510',borderRadius:1,overflow:'hidden',position:'relative'}}>
             <div style={{position:'absolute',bottom:0,width:'100%',height:`${b.v}%`,background:`linear-gradient(0deg,${b.c}77,${b.c}18)`,transition:'all .5s',borderRadius:1}}/>
           </div>
         </div>
       ))}
     </div>
-    <div style={{position:'fixed',right:4,top:34,width:44,height:44,zIndex:10}}>
+    <div style={{position:'fixed',right:6,top:38,width:48,height:48,zIndex:10}}>
       <svg viewBox="0 0 50 50" style={{width:'100%',height:'100%'}}>
         <circle cx="25" cy="25" r="21" fill="none" stroke="#00ffcc" strokeWidth=".3" opacity=".12"/>
         <circle cx="25" cy="25" r="13" fill="none" stroke="#00ffcc" strokeWidth=".2" opacity=".08"/>
@@ -340,16 +340,16 @@ function CockpitHUD({sel,tab,muted,setMuted}){
         {sel!==null&&<circle cx={25+Math.cos(sel*.5)*11} cy={25+Math.sin(sel*.5)*11} r="1.5" fill={c} opacity=".5"><animate attributeName="opacity" values=".5;.15;.5" dur="1.5s" repeatCount="indefinite"/></circle>}
       </svg>
     </div>
-    <div style={{position:'fixed',bottom:0,left:0,right:0,zIndex:10,height:24,background:'linear-gradient(0deg,#020406ee,#02040600)',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 10px',borderTop:'1px solid #00ffcc0d'}}>
-      <div style={{display:'flex',gap:10}}>
+    <div style={{position:'fixed',bottom:0,left:0,right:0,zIndex:10,height:30,background:'linear-gradient(0deg,#020406ee,#02040600)',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 12px',borderTop:'1px solid #00ffcc0d'}}>
+      <div style={{display:'flex',gap:12}}>
         {[{l:'CORE',v:'ONLINE',c:'#00ffcc'},{l:'OAK',v:'98%',c:'#ff8c00'},{l:'TEMP',v:'225°F',c:'#ff4444'}].map((s,i)=>(
-          <div key={i} style={{display:'flex',alignItems:'center',gap:3}}>
-            <div style={{width:3,height:3,borderRadius:'50%',background:s.c,opacity:.4}}/>
-            <span style={{fontSize:6,fontFamily:'monospace',color:s.c+'77',letterSpacing:1}}>{s.l}:{s.v}</span>
+          <div key={i} style={{display:'flex',alignItems:'center',gap:4}}>
+            <div style={{width:4,height:4,borderRadius:'50%',background:s.c,opacity:.4}}/>
+            <span style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:s.c+'77',letterSpacing:1}}>{s.l}:{s.v}</span>
           </div>
         ))}
       </div>
-      <span style={{fontSize:6,fontFamily:'monospace',color:c+'77',letterSpacing:1}}>{cur?`${cur.code}·${cur.era}`:tab==='news'?'UPLINK':'STANDBY'}</span>
+      <span style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:c+'77',letterSpacing:1}}>{cur?`${cur.code}·${cur.era}`:tab==='news'?'UPLINK':'STANDBY'}</span>
     </div>
   </>);
 }
@@ -424,9 +424,9 @@ function HUDFrame({children,era,code,pwr}){
       <div key={i} style={{position:'absolute',[v]:0,[h]:0,width:12,height:12,[`border${v==='top'?'Top':'Bottom'}`]:`2px solid ${c}`,[`border${h==='left'?'Left':'Right'}`]:`2px solid ${c}`,opacity:.5}}/>
     ))}
     <div style={{position:'absolute',inset:0,background:'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.005) 2px,rgba(255,255,255,0.005) 3px)',pointerEvents:'none',zIndex:2}}/>
-    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'4px 10px',borderBottom:`1px solid ${c}10`,background:`linear-gradient(90deg,${c}06,transparent,${c}06)`}}>
-      <span style={{fontSize:7,fontFamily:'monospace',color:c,letterSpacing:2,opacity:.55}}>{code}</span>
-      <div style={{display:'flex',alignItems:'center',gap:5}}><div style={{width:3,height:3,borderRadius:'50%',background:c,animation:'blink 2s infinite'}}/><span style={{fontSize:6,fontFamily:'monospace',color:c+'66',letterSpacing:1}}>PWR:{pwr}%</span></div>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'5px 12px',borderBottom:`1px solid ${c}10`,background:`linear-gradient(90deg,${c}06,transparent,${c}06)`}}>
+      <span style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:c,letterSpacing:2,opacity:.55}}>{code}</span>
+      <div style={{display:'flex',alignItems:'center',gap:5}}><div style={{width:4,height:4,borderRadius:'50%',background:c,animation:'blink 2s infinite'}}/><span style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:c+'66',letterSpacing:1}}>PWR:{pwr}%</span></div>
     </div>{children}
   </div>);
 }
@@ -435,11 +435,11 @@ function NewsCard({item,i}){
   return(<div style={{background:'#040608',border:'1px solid #00ffcc14',padding:'11px 13px',marginBottom:5,position:'relative',overflow:'hidden'}}>
     <div style={{position:'absolute',top:0,left:0,width:2,height:'100%',background:'#00ffcc',opacity:.2}}/>
     <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:3}}>
-      <span style={{fontSize:6,fontFamily:'monospace',color:'#00ffcc',letterSpacing:3}}>FEED-{String(i+1).padStart(3,'0')}</span>
-      <span style={{fontSize:6,fontFamily:'monospace',color:'#00ffcc33'}}>{item.date||''}</span></div>
-    <div style={{fontSize:11.5,color:'#c8e0dc',marginBottom:3,lineHeight:1.4,fontFamily:"Georgia,serif"}}>{item.title}</div>
-    <p style={{fontSize:10.5,color:'#4a6e68',lineHeight:1.6,margin:0,fontFamily:"Georgia,serif"}}>{item.summary}</p>
-    {item.url&&<a href={item.url} target="_blank" rel="noopener noreferrer" style={{fontSize:8,fontFamily:'monospace',color:'#00ffcc',textDecoration:'none',marginTop:4,display:'inline-block',opacity:.35}}>OPEN →</a>}
+      <span style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:'#00ffcc',letterSpacing:3}}>FEED-{String(i+1).padStart(3,'0')}</span>
+      <span style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:'#00ffcc33'}}>{item.date||''}</span></div>
+    <div style={{fontSize:'clamp(15px, 2.5vw, 18px)',color:'#c8e0dc',marginBottom:3,lineHeight:1.4,fontFamily:"Georgia,serif"}}>{item.title}</div>
+    <p style={{fontSize:'clamp(14px, 2.3vw, 16px)',color:'#4a6e68',lineHeight:1.6,margin:0,fontFamily:"Georgia,serif"}}>{item.summary}</p>
+    {item.url&&<a href={item.url} target="_blank" rel="noopener noreferrer" style={{fontSize:'clamp(11px, 1.8vw, 13px)',fontFamily:'monospace',color:'#00ffcc',textDecoration:'none',marginTop:4,display:'inline-block',opacity:.35}}>OPEN →</a>}
   </div>);
 }
 
@@ -480,76 +480,89 @@ export default function App(){
   return(
     <div style={{minHeight:'100vh',background:'#030508',color:'#b8ccc8',fontFamily:"Georgia,serif",position:'relative',overflow:'hidden'}}>
       {stars.map(s=><div key={s.id} style={{position:'fixed',left:`${s.x}%`,top:`${s.y}%`,width:s.s,height:s.s,borderRadius:'50%',background:'#fff',opacity:s.o,animation:`tw ${4+s.d}s ease-in-out infinite`,animationDelay:`${s.d}s`,pointerEvents:'none'}}/>)}
-      <style>{`@keyframes tw{0%,100%{opacity:.03}50%{opacity:.3}}@keyframes blink{0%,100%{opacity:.2}50%{opacity:.6}}@keyframes scan{0%{top:-2px}100%{top:100%}}@keyframes si{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{0%,100%{box-shadow:0 0 3px var(--c)}50%{box-shadow:0 0 12px var(--c)}}.mc{transition:all .25s}.mc:hover{background:#080c12!important;border-color:#00ffcc28!important}`}</style>
+      <style>{`
+        @keyframes tw{0%,100%{opacity:.03}50%{opacity:.3}}
+        @keyframes blink{0%,100%{opacity:.2}50%{opacity:.6}}
+        @keyframes scan{0%{top:-2px}100%{top:100%}}
+        @keyframes si{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        @keyframes pulse{0%,100%{box-shadow:0 0 3px #00ffcc44}50%{box-shadow:0 0 12px #00ffcc44}}
+        .mc{transition:all .25s}.mc:hover{background:#080c12!important;border-color:#00ffcc28!important}
+        @media(max-width:580px){
+          .bb-card{width:100%!important;margin-left:0!important;margin-right:0!important;border-left:2px solid var(--bb-c,#00ffcc28)!important;border-right:none!important;}
+          .bb-centerline,.bb-dot,.bb-scan{display:none!important;}
+        }
+      `}</style>
 
       <CockpitHUD sel={sel} tab={tab} muted={muted} setMuted={setMuted}/>
 
-      <div style={{position:'relative',zIndex:2,padding:'36px 50px 0',maxWidth:680,margin:'0 auto',textAlign:'center'}}>
-        <div style={{fontSize:7,fontFamily:'monospace',letterSpacing:6,color:'#00ffcc33',marginBottom:6}}>★ GALACTIC BBQ INTELLIGENCE NETWORK ★</div>
-        <h1 style={{fontSize:24,fontWeight:400,margin:'0 0 3px',color:'#c8e0dc',letterSpacing:5,fontFamily:'monospace',textShadow:'0 0 25px rgba(0,255,204,0.06)'}}>BRISKETBOWLS</h1>
+      <div style={{position:'relative',zIndex:2,padding:'40px clamp(16px,5vw,50px) 0',maxWidth:680,margin:'0 auto',textAlign:'center'}}>
+        <div style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',letterSpacing:6,color:'#00ffcc33',marginBottom:6}}>★ GALACTIC BBQ INTELLIGENCE NETWORK ★</div>
+        <h1 style={{fontSize:'clamp(22px, 5vw, 38px)',fontWeight:400,margin:'0 0 3px',color:'#c8e0dc',letterSpacing:5,fontFamily:'monospace',textShadow:'0 0 25px rgba(0,255,204,0.06)'}}>BRISKETBOWLS</h1>
         <div style={{width:45,height:1,background:'linear-gradient(90deg,transparent,#00ffcc28,transparent)',margin:'8px auto'}}/>
-        <p style={{fontSize:9,color:'#3a5450',fontFamily:'monospace',letterSpacing:2,margin:'0 auto 12px'}}>SMOKE · FIRE · PATIENCE</p>
+        <p style={{fontSize:'clamp(12px, 2vw, 14px)',color:'#3a5450',fontFamily:'monospace',letterSpacing:2,margin:'0 auto 12px'}}>SMOKE · FIRE · PATIENCE</p>
         <div style={{display:'flex',justifyContent:'center',gap:4}}>
           {[['history','◈ ARCHIVE'],['news','◈ UPLINK']].map(([k,l])=>(
             <button key={k} onClick={()=>{handleTab(k);}}
-              style={{padding:'6px 18px',fontSize:8,fontFamily:'monospace',letterSpacing:2,background:tab===k?'#00ffcc08':'transparent',border:`1px solid ${tab===k?'#00ffcc28':'#0c1412'}`,color:tab===k?'#00ffcc':'#1e3230',cursor:'pointer',transition:'all .3s'}}>{l}</button>
+              style={{padding:'8px 20px',fontSize:'clamp(12px, 2vw, 14px)',fontFamily:'monospace',letterSpacing:2,background:tab===k?'#00ffcc08':'transparent',border:`1px solid ${tab===k?'#00ffcc28':'#0c1412'}`,color:tab===k?'#00ffcc':'#1e3230',cursor:'pointer',transition:'all .3s'}}>{l}</button>
           ))}
         </div>
       </div>
 
-      {tab==='history'&&(<div style={{position:'relative',zIndex:2,maxWidth:680,margin:'18px auto 0',padding:'0 50px'}}>
-        <div style={{position:'absolute',left:'50%',top:0,bottom:0,width:1,background:'linear-gradient(180deg,transparent,#00ffcc10 10%,#00ffcc10 90%,transparent)',transform:'translateX(-.5px)'}}/>
-        <div style={{position:'absolute',left:'calc(50% - 2px)',top:0,width:5,height:1.5,background:'#00ffcc',borderRadius:1,opacity:.35,animation:'scan 6s linear infinite'}}/>
+      {tab==='history'&&(<div style={{position:'relative',zIndex:2,maxWidth:680,margin:'18px auto 0',padding:'0 clamp(16px,5vw,50px)'}}>
+        <div className="bb-centerline" style={{position:'absolute',left:'50%',top:0,bottom:0,width:1,background:'linear-gradient(180deg,transparent,#00ffcc10 10%,#00ffcc10 90%,transparent)',transform:'translateX(-.5px)'}}/>
+        <div className="bb-scan" style={{position:'absolute',left:'calc(50% - 2px)',top:0,width:5,height:1.5,background:'#00ffcc',borderRadius:1,opacity:.35,animation:'scan 6s linear infinite'}}/>
         {evts.map((e,i)=>{const isL=i%2===0,isS=sel===i,c=ac[e.era]||'#00ffcc';
-          return(<div key={i} style={{position:'relative',marginBottom:2}}>
-            <div style={{position:'absolute',left:'50%',top:12,transform:'translate(-50%,0) rotate(45deg)',zIndex:3,
-              width:isS?9:4,height:isS?9:4,background:isS?c:'#060c0a',border:`1px solid ${isS?c:c+'28'}`,
+          return(<div key={i} style={{position:'relative',marginBottom:3}}>
+            <div className="bb-dot" style={{position:'absolute',left:'50%',top:14,transform:'translate(-50%,0) rotate(45deg)',zIndex:3,
+              width:isS?10:5,height:isS?10:5,background:isS?c:'#060c0a',border:`1px solid ${isS?c:c+'28'}`,
               transition:'all .3s',animation:isS?'pulse 2s ease-in-out infinite':'none'}}/>
-            <div className="mc" onClick={()=>handleSelect(i)} style={{
+            <div className={`mc bb-card`} onClick={()=>handleSelect(i)} style={{
+              '--bb-c':isS?c+'38':'#080e0c',
               width:'calc(50% - 24px)',marginLeft:isL?0:'auto',marginRight:isL?'auto':0,
-              padding:'8px 10px',background:isS?'#080c12':'#040608',
+              padding:'10px 12px',background:isS?'#080c12':'#040608',
               border:`1px solid ${isS?c+'38':'#080e0c'}`,cursor:'pointer',
               borderLeft:isL?`2px solid ${isS?c:c+'14'}`:'none',
-              borderRight:!isL?`2px solid ${isS?c:c+'14'}`:'none'}}>
-              <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:1}}>
-                <span style={{fontSize:6,fontFamily:'monospace',color:c,letterSpacing:2,opacity:.5}}>{e.code}</span>
-                <span style={{fontSize:5.5,fontFamily:'monospace',color:c+'55'}}>{e.era}</span></div>
-              <div style={{fontSize:7,fontFamily:'monospace',color:'#304a46',marginBottom:1}}>{e.year}</div>
-              <div style={{fontSize:11,color:'#a8beba'}}>{e.title}</div>
+              borderRight:!isL?`2px solid ${isS?c:c+'14'}`:'none'} as any}>
+              <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:2}}>
+                <span style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:c,letterSpacing:2,opacity:.5}}>{e.code}</span>
+                <span style={{fontSize:'clamp(9px, 1.2vw, 11px)',fontFamily:'monospace',color:c+'55'}}>{e.era}</span></div>
+              <div style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#304a46',marginBottom:2}}>{e.year}</div>
+              <div style={{fontSize:'clamp(14px, 2.4vw, 17px)',color:'#a8beba'}}>{e.title}</div>
             </div>
           </div>);
         })}
       </div>)}
 
       {tab==='history'&&ev&&(
-        <div ref={detRef} style={{position:'relative',zIndex:2,maxWidth:540,margin:'18px auto',padding:'0 50px',animation:'si .4s ease-out'}}>
+        <div ref={detRef} style={{position:'relative',zIndex:2,maxWidth:540,margin:'18px auto',padding:'0 clamp(16px,5vw,50px)',animation:'si .4s ease-out'}}>
           <HUDFrame era={ev.era} code={ev.code} pwr={ev.pwr}>
             <MechaScene era={ev.era}/>
-            <div style={{padding:'12px 13px 14px'}}>
-              <div style={{fontSize:7,fontFamily:'monospace',color,letterSpacing:3,opacity:.45,marginBottom:2}}>{ev.era} · {ev.year}</div>
-              <div style={{fontSize:16,color:'#c8e0dc',marginBottom:7,letterSpacing:1}}>{ev.title}</div>
-              <div style={{width:'100%',height:1,marginBottom:8,background:`linear-gradient(90deg,${color}22,transparent)`}}/>
-              <p style={{fontSize:12,color:'#6a8e88',lineHeight:1.8,margin:'0 0 10px'}}>{ev.detail}</p>
-              {ev.url?<a href={ev.url} target="_blank" rel="noopener noreferrer" style={{fontSize:8,fontFamily:'monospace',color,textDecoration:'none',opacity:.4}}>◈ {ev.src} →</a>:<span style={{fontSize:8,fontFamily:'monospace',color:'#1e3230'}}>◈ {ev.src}</span>}
+            <div style={{padding:'14px 16px 16px'}}>
+              <div style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color,letterSpacing:3,opacity:.45,marginBottom:3}}>{ev.era} · {ev.year}</div>
+              <div style={{fontSize:'clamp(18px, 3.5vw, 24px)',color:'#c8e0dc',marginBottom:8,letterSpacing:1}}>{ev.title}</div>
+              <div style={{width:'100%',height:1,marginBottom:10,background:`linear-gradient(90deg,${color}22,transparent)`}}/>
+              <p style={{fontSize:'clamp(14px, 2.5vw, 17px)',color:'#6a8e88',lineHeight:1.8,margin:'0 0 10px'}}>{ev.detail}</p>
+              {ev.url?<a href={ev.url} target="_blank" rel="noopener noreferrer" style={{fontSize:'clamp(11px, 1.8vw, 13px)',fontFamily:'monospace',color,textDecoration:'none',opacity:.4}}>◈ {ev.src} →</a>:<span style={{fontSize:'clamp(11px, 1.8vw, 13px)',fontFamily:'monospace',color:'#1e3230'}}>◈ {ev.src}</span>}
             </div>
           </HUDFrame>
         </div>
       )}
 
-      {tab==='news'&&(<div style={{position:'relative',zIndex:2,maxWidth:540,margin:'18px auto 0',padding:'0 50px'}}>
+      {tab==='news'&&(<div style={{position:'relative',zIndex:2,maxWidth:540,margin:'18px auto 0',padding:'0 clamp(16px,5vw,50px)'}}>
         <div style={{textAlign:'center',padding:'40px 24px'}}>
           <div style={{width:32,height:32,border:'1px solid #00ffcc18',borderTop:'1px solid #00ffcc44',borderRadius:'50%',margin:'0 auto 18px',opacity:.4}}/>
-          <div style={{fontSize:8,fontFamily:'monospace',color:'#00ffcc',letterSpacing:4,marginBottom:8,opacity:.4}}>UPLINK OFFLINE</div>
-          <div style={{fontSize:11,color:'#3a5450',fontFamily:'monospace',letterSpacing:2,marginBottom:4}}>LIVE BBQ INTEL</div>
-          <div style={{fontSize:8,fontFamily:'monospace',color:'#1e3230',letterSpacing:3}}>COMING SOON, PILOT</div>
+          <div style={{fontSize:'clamp(12px, 2vw, 14px)',fontFamily:'monospace',color:'#00ffcc',letterSpacing:4,marginBottom:8,opacity:.4}}>UPLINK OFFLINE</div>
+          <div style={{fontSize:'clamp(14px, 2.4vw, 17px)',color:'#3a5450',fontFamily:'monospace',letterSpacing:2,marginBottom:4}}>LIVE BBQ INTEL</div>
+          <div style={{fontSize:'clamp(12px, 2vw, 14px)',fontFamily:'monospace',color:'#1e3230',letterSpacing:3}}>COMING SOON, PILOT</div>
           <div style={{width:36,height:1,background:'linear-gradient(90deg,transparent,#00ffcc14,transparent)',margin:'18px auto 0'}}/>
         </div>
       </div>)}
 
       <div style={{position:'relative',zIndex:2,textAlign:'center',padding:'32px 24px',maxWidth:440,margin:'0 auto'}}>
         <div style={{width:36,height:1,background:'linear-gradient(90deg,transparent,#00ffcc14,transparent)',margin:'0 auto 12px'}}/>
-        <p style={{fontSize:7,fontFamily:'monospace',color:'#102220',letterSpacing:3}}>LESS IS MORE · FIRE IS FOREVER</p>
-        <p style={{fontSize:6,fontFamily:'monospace',color:'#080e0c',letterSpacing:3,marginTop:3}}>★ BRISKETBOWLS.COM ★</p>
+        <p style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#102220',letterSpacing:3}}>LESS IS MORE · FIRE IS FOREVER</p>
+        <p style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:'#080e0c',letterSpacing:3,marginTop:3}}>★ BRISKETBOWLS.COM ★</p>
       </div>
     </div>
   );
