@@ -564,6 +564,49 @@ function PilotLog(){
   );
 }
 
+// ─── CAT POD ───
+function CatPod(){
+  return(
+    <div style={{position:'fixed',bottom:24,right:24,zIndex:100,display:'flex',flexDirection:'column',alignItems:'center',animation:'catFloat 4s ease-in-out infinite',pointerEvents:'none'}}>
+      <div style={{position:'relative',width:120,height:140,display:'flex',flexDirection:'column',alignItems:'center'}}>
+        {/* Antenna */}
+        <div style={{width:2,height:16,background:'linear-gradient(180deg,#00ffcc99,#00ffcc11)',marginBottom:2,borderRadius:1}}/>
+        <div style={{width:6,height:6,borderRadius:'50%',background:'#00ffcc',boxShadow:'0 0 8px #00ffcc',marginBottom:-3,zIndex:2,animation:'thrusterGlow 2s ease-in-out infinite'}}/>
+
+        {/* Pod shell */}
+        <div style={{width:110,height:110,borderRadius:'50%',background:'radial-gradient(circle at 35% 30%,#1a3830,#060d0b)',border:'2px solid #00ffcc2a',boxShadow:'0 0 24px #00ffcc14, 0 0 48px #00ffcc06, inset 0 0 20px #00000099',position:'relative',overflow:'hidden',display:'flex',alignItems:'center',justifyContent:'center'}}>
+          {/* Spinning glow ring */}
+          <div style={{position:'absolute',inset:-5,borderRadius:'50%',background:'conic-gradient(from 0deg,#00ffcc28,#ff440010,#7c44ff10,#00ffcc28)',animation:'spin 10s linear infinite',zIndex:0,pointerEvents:'none'}}/>
+          {/* Video viewport */}
+          <div style={{width:88,height:88,borderRadius:'50%',overflow:'hidden',position:'relative',zIndex:1,border:'1px solid #00ffcc1a',boxShadow:'inset 0 0 12px #00000077'}}>
+            <video src="/assets/cat_companion.mp4" autoPlay loop muted playsInline style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>
+          </div>
+          {/* Glare highlight */}
+          <div style={{position:'absolute',top:12,left:18,width:28,height:18,borderRadius:'50%',background:'radial-gradient(ellipse,#ffffff14,transparent)',zIndex:2,pointerEvents:'none'}}/>
+          {/* Scan line */}
+          <div style={{position:'absolute',inset:0,borderRadius:'50%',background:'repeating-linear-gradient(0deg,transparent,transparent 3px,#00000012 3px,#00000012 4px)',zIndex:2,pointerEvents:'none'}}/>
+        </div>
+
+        {/* Bottom thrusters */}
+        <div style={{display:'flex',gap:8,marginTop:5}}>
+          {[0,0.6,1.2].map((d,i)=>(
+            <div key={i} style={{width:14,height:9,background:'#0a1812',border:'1px solid #00ffcc1a',borderRadius:'0 0 4px 4px',position:'relative'}}>
+              <div style={{position:'absolute',bottom:-5,left:'50%',transform:'translateX(-50%)',width:5,height:5,background:'#00ffcc66',borderRadius:'50%',boxShadow:'0 0 6px #00ffcc',animation:`thrusterGlow 1.4s ease-in-out infinite`,animationDelay:`${d}s`}}/>
+            </div>
+          ))}
+        </div>
+
+        {/* Side wings */}
+        <div style={{position:'absolute',top:'44%',left:-14,transform:'translateY(-50%)',width:14,height:32,background:'linear-gradient(90deg,#081410,#1a3830)',border:'1px solid #00ffcc1a',borderRight:'none',borderRadius:'4px 0 0 4px',clipPath:'polygon(0 25%,100% 0,100% 100%,0 75%)'}}/>
+        <div style={{position:'absolute',top:'44%',right:-14,transform:'translateY(-50%)',width:14,height:32,background:'linear-gradient(270deg,#081410,#1a3830)',border:'1px solid #00ffcc1a',borderLeft:'none',borderRadius:'0 4px 4px 0',clipPath:'polygon(0 0,100% 25%,100% 75%,0 100%)'}}/>
+      </div>
+
+      {/* Label */}
+      <div style={{marginTop:6,fontSize:'clamp(7px,1vw,9px)',fontFamily:'monospace',letterSpacing:3,color:'#00ffcc33',textAlign:'center'}}>NAVIGATOR</div>
+    </div>
+  );
+}
+
 // ─── MAIN ───
 export default function App(){
   const [booted,setBooted]=useState(false);
@@ -608,6 +651,8 @@ export default function App(){
         @keyframes si{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
         @keyframes spin{to{transform:rotate(360deg)}}
         @keyframes pulse{0%,100%{box-shadow:0 0 3px #00ffcc44}50%{box-shadow:0 0 12px #00ffcc44}}
+        @keyframes catFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        @keyframes thrusterGlow{0%,100%{opacity:.25;transform:translateX(-50%) scale(.9)}50%{opacity:1;transform:translateX(-50%) scale(1.6)}}
         .mc{transition:all .25s}.mc:hover{background:#080c12!important;border-color:#00ffcc28!important}
         @media(max-width:580px){
           .bb-card{width:100%!important;margin-left:0!important;margin-right:0!important;border-left:2px solid var(--bb-c,#00ffcc28)!important;border-right:none!important;}
@@ -616,6 +661,7 @@ export default function App(){
       `}</style>
 
       <CockpitHUD sel={sel} tab={tab} muted={muted} setMuted={setMuted}/>
+      <CatPod/>
 
       <div style={{position:'relative',zIndex:2,padding:'40px clamp(16px,5vw,50px) 0',maxWidth:680,margin:'0 auto',textAlign:'center'}}>
         <div style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',letterSpacing:6,color:'#00ffcc55',marginBottom:6}}>★ GALACTIC BBQ INTELLIGENCE NETWORK ★</div>
