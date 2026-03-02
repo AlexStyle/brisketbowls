@@ -619,8 +619,11 @@ export default function App(){
 
       <div style={{position:'relative',zIndex:2,padding:'40px clamp(16px,5vw,50px) 0',maxWidth:680,margin:'0 auto',textAlign:'center'}}>
         <div style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',letterSpacing:6,color:'#00ffcc55',marginBottom:6}}>★ GALACTIC BBQ INTELLIGENCE NETWORK ★</div>
-        <h1 style={{fontSize:'clamp(22px, 5vw, 38px)',fontWeight:400,margin:'0 0 3px',color:'#c8e0dc',letterSpacing:5,fontFamily:'monospace',textShadow:'0 0 25px rgba(0,255,204,0.06)'}}>BRISKETBOWLS</h1>
-        <div style={{width:45,height:1,background:'linear-gradient(90deg,transparent,#00ffcc28,transparent)',margin:'8px auto'}}/>
+        <h1 style={{margin:0,lineHeight:0,fontSize:0}} aria-label="BrisketBowls">
+          <video src="/assets/BBLogo.mp4" autoPlay loop muted playsInline
+            style={{width:'clamp(100px,28vw,168px)',height:'auto',display:'block',margin:'0 auto'}}/>
+        </h1>
+        <div style={{width:45,height:1,background:'linear-gradient(90deg,transparent,#00ffcc28,transparent)',margin:'6px auto'}}/>
         <p style={{fontSize:'clamp(12px, 2vw, 14px)',color:'#5a8078',fontFamily:'monospace',letterSpacing:2,margin:'0 auto 12px'}}>SMOKE · FIRE · PATIENCE</p>
         <div style={{display:'flex',justifyContent:'center',gap:4}}>
           {[['history','◈ ARCHIVE'],['log','◈ PILOT LOG'],['news','◈ UPLINK']].map(([k,l])=>(
