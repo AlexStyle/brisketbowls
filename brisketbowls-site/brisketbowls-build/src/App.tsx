@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import * as Tone from 'tone';
 
 // ─── AUDIO ENGINE ───
@@ -349,7 +349,7 @@ function CockpitHUD({sel,tab,muted,setMuted}){
           </div>
         ))}
       </div>
-      <span style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:c+'77',letterSpacing:1}}>{cur?`${cur.code}·${cur.era}`:tab==='news'?'UPLINK':'STANDBY'}</span>
+      <span style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:c+'77',letterSpacing:1}}>{cur?`${cur.code}·${cur.era}`:tab==='news'?'UPLINK':tab==='log'?'PILOT LOG':'STANDBY'}</span>
     </div>
   </>);
 }
@@ -443,6 +443,126 @@ function NewsCard({item,i}){
   </div>);
 }
 
+// ─── PILOT LOG ───
+function PilotLog(){
+  const videoStyle:React.CSSProperties={
+    width:'100%',height:'100%',objectFit:'cover',display:'block',borderRadius:'50%',
+  };
+  const bubbleWrap:React.CSSProperties={
+    width:'clamp(180px,38vw,260px)',height:'clamp(180px,38vw,260px)',borderRadius:'50%',
+    overflow:'hidden',position:'relative',flexShrink:0,
+    border:'1px solid #00ffcc22',
+    boxShadow:'0 0 28px #00ffcc0a, inset 0 0 18px #00000088',
+  };
+  const bubbleRing:React.CSSProperties={
+    position:'absolute',inset:-3,borderRadius:'50%',
+    background:'conic-gradient(from 0deg,#00ffcc08,#ff440008,#00ffcc08)',
+    animation:'spin 12s linear infinite',zIndex:0,pointerEvents:'none',
+  };
+  return(
+    <div style={{position:'relative',zIndex:2,maxWidth:680,margin:'0 auto',padding:'24px clamp(16px,5vw,50px) 60px',animation:'si .4s ease-out'}}>
+
+      {/* ── header ── */}
+      <div style={{textAlign:'center',marginBottom:32}}>
+        <div style={{fontSize:'clamp(10px,1.6vw,12px)',fontFamily:'monospace',letterSpacing:5,color:'#00ffcc33',marginBottom:10}}>◈ FIELD NOTES FROM THE PIT ◈</div>
+        <h2 style={{fontFamily:"'Playfair Display',Georgia,serif",fontSize:'clamp(26px,5.5vw,44px)',fontWeight:700,color:'#c8e0dc',letterSpacing:2,lineHeight:1.15,marginBottom:8}}>
+          The Pilot's Story
+        </h2>
+        <div style={{width:60,height:1,background:'linear-gradient(90deg,transparent,#00ffcc38,transparent)',margin:'0 auto'}}/>
+      </div>
+
+      {/* ── bio paragraphs ── */}
+      <div style={{fontFamily:"'IM Fell English',Georgia,serif",color:'#8aaea8',lineHeight:1.9,marginBottom:36,borderLeft:'2px solid #00ffcc12',paddingLeft:'clamp(14px,3vw,28px)'}}>
+        <p style={{fontSize:'clamp(15px,2.6vw,19px)',marginBottom:18,color:'#b0cac4'}}>
+          <em>Born in 1990. Smoking since 2002.</em> Some men find the flame — I was <em>born</em> into it.
+          Twenty-two years at the pit, and every cook still teaches me something new.
+        </p>
+        <p style={{fontSize:'clamp(14px,2.4vw,17px)',marginBottom:18}}>
+          It started on a humble Kettle Grill. Nothing fancy. Just charcoal, patience, and curiosity.
+          That kettle became my proving ground — I ran everything through it. Burgers and links on
+          weeknights, thick-cut steaks on Saturdays, shrimp and tilapia when the mood called for
+          something lighter, salmon with a cedar plank, and whole trays of vegetables kissed by
+          the fire until they caramelized into something unrecognizable from what went in.
+        </p>
+        <p style={{fontSize:'clamp(14px,2.4vw,17px)',marginBottom:18}}>
+          The kettle taught me fire management — real fire management. No dial to turn, no
+          digital readout to trust. Just vents, airflow, and the sound of the coals talking back
+          to you. By the time I graduated to a proper smoker, I already understood the language.
+        </p>
+        <p style={{fontSize:'clamp(14px,2.4vw,17px)',marginBottom:0}}>
+          Brisket is where the obsession crystallized. Low and slow, post oak smoke, a salt-and-pepper
+          bark that bends before it breaks — that <em>bend bark test</em> never gets old.
+          Every flat I pull off the smoker is a conversation between patience, temperature, and time.
+          This site is my log of that conversation.
+        </p>
+      </div>
+
+      {/* ── before / after ── */}
+      <div style={{marginBottom:40}}>
+        <div style={{fontSize:'clamp(10px,1.6vw,12px)',fontFamily:'monospace',letterSpacing:4,color:'#00ffcc44',textAlign:'center',marginBottom:16}}>◈ THE COOK ◈</div>
+        <div style={{display:'flex',gap:'clamp(10px,3vw,20px)',flexWrap:'wrap',justifyContent:'center'}}>
+          {[
+            {src:'/assets/before.jpg',label:'PRE-COOK',sub:'Kettle & Gauge'},
+            {src:'/assets/after.jpg', label:'POST-COOK',sub:'The Finished Product'},
+          ].map(({src,label,sub})=>(
+            <div key={label} style={{flex:'1 1 clamp(140px,40%,280px)',maxWidth:320}}>
+              <div style={{border:'1px solid #00ffcc14',overflow:'hidden',position:'relative',background:'#040608'}}>
+                <div style={{position:'absolute',inset:0,pointerEvents:'none',zIndex:2,
+                  background:'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,204,0.012) 2px,rgba(0,255,204,0.012) 3px)'}}/>
+                {[['top','left'],['top','right'],['bottom','left'],['bottom','right']].map(([v,h],i)=>(
+                  <div key={i} style={{position:'absolute',[v]:0,[h]:0,width:10,height:10,
+                    [`border${v==='top'?'Top':'Bottom'}`]:'2px solid #00ffcc44',
+                    [`border${h==='left'?'Left':'Right'}`]:'2px solid #00ffcc44',zIndex:3}}/>
+                ))}
+                <img src={src} alt={sub} style={{width:'100%',display:'block',objectFit:'cover',maxHeight:220,filter:'brightness(.92) contrast(1.05)'}}
+                  onError={(e)=>{(e.target as HTMLImageElement).style.display='none';}}/>
+                <div style={{padding:'7px 10px',background:'#040608',borderTop:'1px solid #00ffcc0d',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                  <span style={{fontSize:'clamp(10px,1.4vw,12px)',fontFamily:'monospace',color:'#00ffcc',letterSpacing:3,opacity:.55}}>{label}</span>
+                  <span style={{fontSize:'clamp(10px,1.4vw,11px)',fontFamily:"'IM Fell English',serif",color:'#3a5450',fontStyle:'italic'}}>{sub}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── video bubbles ── */}
+      <div style={{marginBottom:16}}>
+        <div style={{fontSize:'clamp(10px,1.6vw,12px)',fontFamily:'monospace',letterSpacing:4,color:'#00ffcc44',textAlign:'center',marginBottom:24}}>◈ FROM THE PIT ◈</div>
+        <div style={{display:'flex',gap:'clamp(20px,5vw,48px)',justifyContent:'center',flexWrap:'wrap',alignItems:'flex-start'}}>
+          {[
+            {src:'/assets/smokesetup.mp4',  label:'THE SETUP',   sub:'Post Oak · 225°F · Low & Slow'},
+            {src:'/assets/bendbarktest.mp4', label:'BARK TEST',   sub:'The bend that tells all'},
+          ].map(({src,label,sub})=>(
+            <div key={label} style={{display:'flex',flexDirection:'column',alignItems:'center',gap:12}}>
+              <div style={bubbleWrap}>
+                <div style={bubbleRing}/>
+                <video src={src} autoPlay loop muted playsInline style={videoStyle}
+                  onError={(e)=>{(e.target as HTMLVideoElement).style.opacity='.15';}}/>
+                <div style={{position:'absolute',inset:0,borderRadius:'50%',
+                  boxShadow:'inset 0 0 24px #00000066, inset 0 0 6px #00ffcc08',pointerEvents:'none',zIndex:2}}/>
+              </div>
+              <div style={{textAlign:'center'}}>
+                <div style={{fontSize:'clamp(10px,1.4vw,12px)',fontFamily:'monospace',color:'#00ffcc88',letterSpacing:3,marginBottom:2}}>{label}</div>
+                <div style={{fontSize:'clamp(12px,2vw,14px)',fontFamily:"'IM Fell English',serif",color:'#3a5450',fontStyle:'italic'}}>{sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── closing rule ── */}
+      <div style={{textAlign:'center',marginTop:40}}>
+        <div style={{width:60,height:1,background:'linear-gradient(90deg,transparent,#00ffcc18,transparent)',margin:'0 auto 12px'}}/>
+        <p style={{fontFamily:"'IM Fell English',serif",fontSize:'clamp(13px,2.2vw,15px)',color:'#1e3230',fontStyle:'italic',letterSpacing:1}}>
+          — Salt. Pepper. Time. —
+        </p>
+      </div>
+
+    </div>
+  );
+}
+
 // ─── MAIN ───
 export default function App(){
   const [booted,setBooted]=useState(false);
@@ -502,7 +622,7 @@ export default function App(){
         <div style={{width:45,height:1,background:'linear-gradient(90deg,transparent,#00ffcc28,transparent)',margin:'8px auto'}}/>
         <p style={{fontSize:'clamp(12px, 2vw, 14px)',color:'#3a5450',fontFamily:'monospace',letterSpacing:2,margin:'0 auto 12px'}}>SMOKE · FIRE · PATIENCE</p>
         <div style={{display:'flex',justifyContent:'center',gap:4}}>
-          {[['history','◈ ARCHIVE'],['news','◈ UPLINK']].map(([k,l])=>(
+          {[['history','◈ ARCHIVE'],['log','◈ PILOT LOG'],['news','◈ UPLINK']].map(([k,l])=>(
             <button key={k} onClick={()=>{handleTab(k);}}
               style={{padding:'8px 20px',fontSize:'clamp(12px, 2vw, 14px)',fontFamily:'monospace',letterSpacing:2,background:tab===k?'#00ffcc08':'transparent',border:`1px solid ${tab===k?'#00ffcc28':'#0c1412'}`,color:tab===k?'#00ffcc':'#1e3230',cursor:'pointer',transition:'all .3s'}}>{l}</button>
           ))}
@@ -548,6 +668,8 @@ export default function App(){
           </HUDFrame>
         </div>
       )}
+
+      {tab==='log'&&<PilotLog/>}
 
       {tab==='news'&&(<div style={{position:'relative',zIndex:2,maxWidth:540,margin:'18px auto 0',padding:'0 clamp(16px,5vw,50px)'}}>
         <div style={{textAlign:'center',padding:'40px 24px'}}>
