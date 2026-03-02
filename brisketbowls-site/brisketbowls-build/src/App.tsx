@@ -3,11 +3,8 @@ import * as Tone from 'tone';
 
 // ─── AUDIO ENGINE ───
 let audioReady=false;
-let crackleLoop=null;
-let crackleNoise=null;
-let crackleFilter=null;
-let crackleGain=null;
-let popSynth=null;
+let bgAudio:HTMLAudioElement|null=null;
+let bgFadeTimer:ReturnType<typeof setInterval>|null=null;
 let bootSynth=null;
 let clickSynth=null;
 let whooshNoise=null;
@@ -20,20 +17,11 @@ async function initAudio(){
   if(audioReady)return;
   await Tone.start();
 
-  // Ambient wood crackle — filtered brown noise
-  crackleNoise=new Tone.Noise('brown');
-  crackleFilter=new Tone.AutoFilter({frequency:'0.8hz',depth:0.7,baseFrequency:200,octaves:3}).toDestination();
-  crackleGain=new Tone.Gain(0.06).connect(crackleFilter);
-  crackleNoise.connect(crackleGain);
-  crackleFilter.start();
-
-  // Random pops for crackle texture
-  popSynth=new Tone.MembraneSynth({
-    pitchDecay:0.01,octaves:3,
-    envelope:{attack:0.001,decay:0.08,sustain:0,release:0.02}
-  });
-  const popGain=new Tone.Gain(0.08).toDestination();
-  popSynth.connect(popGain);
+  // Real ambient audio — lofi + campfire blend
+  bgAudio=new Audio('/assets/ambient_mix.mp3');
+  bgAudio.loop=true;
+  bgAudio.volume=0;
+  bgAudio.preload='auto';
 
   // Boot sequence beeps
   bootSynth=new Tone.Synth({
@@ -78,24 +66,26 @@ async function initAudio(){
 }
 
 function startCrackle(){
-  if(!audioReady||!crackleNoise)return;
-  try{ crackleNoise.start(); }catch(e){}
-  // Random pops
-  if(crackleLoop)crackleLoop.dispose();
-  crackleLoop=new Tone.Loop(()=>{
-    if(!popSynth)return;
-    if(Math.random()>0.4){
-      const freq=80+Math.random()*200;
-      try{ popSynth.triggerAttackRelease(freq,'32n'); }catch(e){}
-    }
-  },'8n');
-  crackleLoop.start(0);
-  Tone.Transport.start();
+  if(!audioReady||!bgAudio)return;
+  if(bgFadeTimer){clearInterval(bgFadeTimer);bgFadeTimer=null;}
+  bgAudio.play().catch(()=>{});
+  // Fade in to 0.72 over ~2s
+  bgFadeTimer=setInterval(()=>{
+    if(!bgAudio)return;
+    if(bgAudio.volume<0.70){bgAudio.volume=Math.min(0.72,bgAudio.volume+0.018);}
+    else{clearInterval(bgFadeTimer!);bgFadeTimer=null;}
+  },50);
 }
 
 function stopCrackle(){
-  try{ crackleNoise?.stop(); }catch(e){}
-  try{ crackleLoop?.stop(); }catch(e){}
+  if(!bgAudio)return;
+  if(bgFadeTimer){clearInterval(bgFadeTimer);bgFadeTimer=null;}
+  // Fade out then pause
+  bgFadeTimer=setInterval(()=>{
+    if(!bgAudio)return;
+    if(bgAudio.volume>0.018){bgAudio.volume=Math.max(0,bgAudio.volume-0.018);}
+    else{bgAudio.volume=0;bgAudio.pause();clearInterval(bgFadeTimer!);bgFadeTimer=null;}
+  },50);
 }
 
 function playBoot(){
