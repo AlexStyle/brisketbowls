@@ -464,7 +464,7 @@ function PilotLog(){
 
       {/* ── header ── */}
       <div style={{textAlign:'center',marginBottom:32}}>
-        <div style={{fontSize:'clamp(10px,1.6vw,12px)',fontFamily:'monospace',letterSpacing:5,color:'#00ffcc33',marginBottom:10}}>◈ FIELD NOTES FROM THE PIT ◈</div>
+        <div style={{fontSize:'clamp(10px,1.6vw,12px)',fontFamily:'monospace',letterSpacing:5,color:'#00ffcc66',marginBottom:10}}>◈ FIELD NOTES FROM THE PIT ◈</div>
         <h2 style={{fontFamily:"'Playfair Display',Georgia,serif",fontSize:'clamp(26px,5.5vw,44px)',fontWeight:700,color:'#c8e0dc',letterSpacing:2,lineHeight:1.15,marginBottom:8}}>
           The Pilot's Story
         </h2>
@@ -499,7 +499,7 @@ function PilotLog(){
 
       {/* ── before / after ── */}
       <div style={{marginBottom:40}}>
-        <div style={{fontSize:'clamp(10px,1.6vw,12px)',fontFamily:'monospace',letterSpacing:4,color:'#00ffcc44',textAlign:'center',marginBottom:16}}>◈ THE COOK ◈</div>
+        <div style={{fontSize:'clamp(10px,1.6vw,12px)',fontFamily:'monospace',letterSpacing:4,color:'#00ffcc77',textAlign:'center',marginBottom:16}}>◈ THE COOK ◈</div>
         <div style={{display:'flex',gap:'clamp(10px,3vw,20px)',flexWrap:'wrap',justifyContent:'center'}}>
           {[
             {src:'/assets/before.jpg',label:'PRE-COOK',sub:'Kettle & Gauge'},
@@ -518,7 +518,7 @@ function PilotLog(){
                   onError={(e)=>{(e.target as HTMLImageElement).style.display='none';}}/>
                 <div style={{padding:'7px 10px',background:'#040608',borderTop:'1px solid #00ffcc0d',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                   <span style={{fontSize:'clamp(10px,1.4vw,12px)',fontFamily:'monospace',color:'#00ffcc',letterSpacing:3,opacity:.55}}>{label}</span>
-                  <span style={{fontSize:'clamp(10px,1.4vw,11px)',fontFamily:"'IM Fell English',serif",color:'#3a5450',fontStyle:'italic'}}>{sub}</span>
+                  <span style={{fontSize:'clamp(10px,1.4vw,11px)',fontFamily:"'IM Fell English',serif",color:'#6a9a90',fontStyle:'italic'}}>{sub}</span>
                 </div>
               </div>
             </div>
@@ -528,7 +528,7 @@ function PilotLog(){
 
       {/* ── video bubbles ── */}
       <div style={{marginBottom:16}}>
-        <div style={{fontSize:'clamp(10px,1.6vw,12px)',fontFamily:'monospace',letterSpacing:4,color:'#00ffcc44',textAlign:'center',marginBottom:24}}>◈ FROM THE PIT ◈</div>
+        <div style={{fontSize:'clamp(10px,1.6vw,12px)',fontFamily:'monospace',letterSpacing:4,color:'#00ffcc77',textAlign:'center',marginBottom:24}}>◈ FROM THE PIT ◈</div>
         <div style={{display:'flex',gap:'clamp(20px,5vw,48px)',justifyContent:'center',flexWrap:'wrap',alignItems:'flex-start'}}>
           {[
             {src:'/assets/smokesetup.mp4',  label:'THE SETUP',   sub:'Post Oak · 225°F · Low & Slow'},
@@ -544,7 +544,7 @@ function PilotLog(){
               </div>
               <div style={{textAlign:'center'}}>
                 <div style={{fontSize:'clamp(10px,1.4vw,12px)',fontFamily:'monospace',color:'#00ffcc88',letterSpacing:3,marginBottom:2}}>{label}</div>
-                <div style={{fontSize:'clamp(12px,2vw,14px)',fontFamily:"'IM Fell English',serif",color:'#3a5450',fontStyle:'italic'}}>{sub}</div>
+                <div style={{fontSize:'clamp(12px,2vw,14px)',fontFamily:"'IM Fell English',serif",color:'#6a9a90',fontStyle:'italic'}}>{sub}</div>
               </div>
             </div>
           ))}
@@ -554,9 +554,10 @@ function PilotLog(){
       {/* ── closing rule ── */}
       <div style={{textAlign:'center',marginTop:40}}>
         <div style={{width:60,height:1,background:'linear-gradient(90deg,transparent,#00ffcc18,transparent)',margin:'0 auto 12px'}}/>
-        <p style={{fontFamily:"'IM Fell English',serif",fontSize:'clamp(13px,2.2vw,15px)',color:'#1e3230',fontStyle:'italic',letterSpacing:1}}>
+        <p style={{fontFamily:"'IM Fell English',serif",fontSize:'clamp(13px,2.2vw,15px)',color:'#5a8a80',fontStyle:'italic',letterSpacing:1}}>
           — Salt. Pepper. Time. —
         </p>
+
       </div>
 
     </div>
@@ -617,14 +618,14 @@ export default function App(){
       <CockpitHUD sel={sel} tab={tab} muted={muted} setMuted={setMuted}/>
 
       <div style={{position:'relative',zIndex:2,padding:'40px clamp(16px,5vw,50px) 0',maxWidth:680,margin:'0 auto',textAlign:'center'}}>
-        <div style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',letterSpacing:6,color:'#00ffcc33',marginBottom:6}}>★ GALACTIC BBQ INTELLIGENCE NETWORK ★</div>
+        <div style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',letterSpacing:6,color:'#00ffcc55',marginBottom:6}}>★ GALACTIC BBQ INTELLIGENCE NETWORK ★</div>
         <h1 style={{fontSize:'clamp(22px, 5vw, 38px)',fontWeight:400,margin:'0 0 3px',color:'#c8e0dc',letterSpacing:5,fontFamily:'monospace',textShadow:'0 0 25px rgba(0,255,204,0.06)'}}>BRISKETBOWLS</h1>
         <div style={{width:45,height:1,background:'linear-gradient(90deg,transparent,#00ffcc28,transparent)',margin:'8px auto'}}/>
-        <p style={{fontSize:'clamp(12px, 2vw, 14px)',color:'#3a5450',fontFamily:'monospace',letterSpacing:2,margin:'0 auto 12px'}}>SMOKE · FIRE · PATIENCE</p>
+        <p style={{fontSize:'clamp(12px, 2vw, 14px)',color:'#5a8078',fontFamily:'monospace',letterSpacing:2,margin:'0 auto 12px'}}>SMOKE · FIRE · PATIENCE</p>
         <div style={{display:'flex',justifyContent:'center',gap:4}}>
           {[['history','◈ ARCHIVE'],['log','◈ PILOT LOG'],['news','◈ UPLINK']].map(([k,l])=>(
             <button key={k} onClick={()=>{handleTab(k);}}
-              style={{padding:'8px 20px',fontSize:'clamp(12px, 2vw, 14px)',fontFamily:'monospace',letterSpacing:2,background:tab===k?'#00ffcc08':'transparent',border:`1px solid ${tab===k?'#00ffcc28':'#0c1412'}`,color:tab===k?'#00ffcc':'#1e3230',cursor:'pointer',transition:'all .3s'}}>{l}</button>
+              style={{padding:'8px 20px',fontSize:'clamp(12px, 2vw, 14px)',fontFamily:'monospace',letterSpacing:2,background:tab===k?'#00ffcc08':'transparent',border:`1px solid ${tab===k?'#00ffcc28':'#0c1412'}`,color:tab===k?'#00ffcc':'#4a7a70',cursor:'pointer',transition:'all .3s'}}>{l}</button>
           ))}
         </div>
       </div>
@@ -647,7 +648,7 @@ export default function App(){
               <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:2}}>
                 <span style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:c,letterSpacing:2,opacity:.5}}>{e.code}</span>
                 <span style={{fontSize:'clamp(9px, 1.2vw, 11px)',fontFamily:'monospace',color:c+'55'}}>{e.era}</span></div>
-              <div style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#304a46',marginBottom:2}}>{e.year}</div>
+              <div style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#4a7268',marginBottom:2}}>{e.year}</div>
               <div style={{fontSize:'clamp(14px, 2.4vw, 17px)',color:'#a8beba'}}>{e.title}</div>
             </div>
           </div>);
@@ -663,7 +664,7 @@ export default function App(){
               <div style={{fontSize:'clamp(18px, 3.5vw, 24px)',color:'#c8e0dc',marginBottom:8,letterSpacing:1}}>{ev.title}</div>
               <div style={{width:'100%',height:1,marginBottom:10,background:`linear-gradient(90deg,${color}22,transparent)`}}/>
               <p style={{fontSize:'clamp(14px, 2.5vw, 17px)',color:'#6a8e88',lineHeight:1.8,margin:'0 0 10px'}}>{ev.detail}</p>
-              {ev.url?<a href={ev.url} target="_blank" rel="noopener noreferrer" style={{fontSize:'clamp(11px, 1.8vw, 13px)',fontFamily:'monospace',color,textDecoration:'none',opacity:.4}}>◈ {ev.src} →</a>:<span style={{fontSize:'clamp(11px, 1.8vw, 13px)',fontFamily:'monospace',color:'#1e3230'}}>◈ {ev.src}</span>}
+              {ev.url?<a href={ev.url} target="_blank" rel="noopener noreferrer" style={{fontSize:'clamp(11px, 1.8vw, 13px)',fontFamily:'monospace',color,textDecoration:'none',opacity:.4}}>◈ {ev.src} →</a>:<span style={{fontSize:'clamp(11px, 1.8vw, 13px)',fontFamily:'monospace',color:'#3a6058'}}>◈ {ev.src}</span>}
             </div>
           </HUDFrame>
         </div>
@@ -675,16 +676,16 @@ export default function App(){
         <div style={{textAlign:'center',padding:'40px 24px'}}>
           <div style={{width:32,height:32,border:'1px solid #00ffcc18',borderTop:'1px solid #00ffcc44',borderRadius:'50%',margin:'0 auto 18px',opacity:.4}}/>
           <div style={{fontSize:'clamp(12px, 2vw, 14px)',fontFamily:'monospace',color:'#00ffcc',letterSpacing:4,marginBottom:8,opacity:.4}}>UPLINK OFFLINE</div>
-          <div style={{fontSize:'clamp(14px, 2.4vw, 17px)',color:'#3a5450',fontFamily:'monospace',letterSpacing:2,marginBottom:4}}>LIVE BBQ INTEL</div>
-          <div style={{fontSize:'clamp(12px, 2vw, 14px)',fontFamily:'monospace',color:'#1e3230',letterSpacing:3}}>COMING SOON, PILOT</div>
+          <div style={{fontSize:'clamp(14px, 2.4vw, 17px)',color:'#5a8078',fontFamily:'monospace',letterSpacing:2,marginBottom:4}}>LIVE BBQ INTEL</div>
+          <div style={{fontSize:'clamp(12px, 2vw, 14px)',fontFamily:'monospace',color:'#3a6058',letterSpacing:3}}>COMING SOON, PILOT</div>
           <div style={{width:36,height:1,background:'linear-gradient(90deg,transparent,#00ffcc14,transparent)',margin:'18px auto 0'}}/>
         </div>
       </div>)}
 
       <div style={{position:'relative',zIndex:2,textAlign:'center',padding:'32px 24px',maxWidth:440,margin:'0 auto'}}>
         <div style={{width:36,height:1,background:'linear-gradient(90deg,transparent,#00ffcc14,transparent)',margin:'0 auto 12px'}}/>
-        <p style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#102220',letterSpacing:3}}>LESS IS MORE · FIRE IS FOREVER</p>
-        <p style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:'#080e0c',letterSpacing:3,marginTop:3}}>★ BRISKETBOWLS.COM ★</p>
+        <p style={{fontSize:'clamp(10px, 1.6vw, 12px)',fontFamily:'monospace',color:'#3a6058',letterSpacing:3}}>LESS IS MORE · FIRE IS FOREVER</p>
+        <p style={{fontSize:'clamp(10px, 1.4vw, 12px)',fontFamily:'monospace',color:'#2a5048',letterSpacing:3,marginTop:3}}>★ BRISKETBOWLS.COM ★</p>
       </div>
     </div>
   );
